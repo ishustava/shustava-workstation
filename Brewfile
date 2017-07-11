@@ -1,5 +1,22 @@
+tap 'cloudfoundry/tap'
+
 cask 'iterm2'
 cask 'flycut'
 cask 'shiftit'
+cask 'java'
+cask 'intellij-idea-ce'
 
-brew "git"
+brew 'git'
+brew 'jq'
+brew 'cf-cli'
+brew 'credhub-cli'
+brew 'bosh-cli'
+brew 'bbl'
+brew 'watch'
+brew 'pt'
+brew 'htop'
+brew 'go'
+brew 'fasd'
+brew 'tree'
+brew 'wget'
+brew 'lastpass-cli', args: ['--with-pinentry', '--with-doc']
