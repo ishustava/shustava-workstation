@@ -16,7 +16,7 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 
 PROMPT_COMMAND='__git_ps1 "\n\e[1;37m\W:\e[0m" "\n\\\$ "'
 
-alias ll='ls -ltro'
+alias ll='ls -ltrao'
 
 function un() {
 	lpass show -F $1 --username --clip
