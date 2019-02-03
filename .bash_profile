@@ -14,7 +14,7 @@ source ~/.git-prompt.sh
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 
-PROMPT_COMMAND='__git_ps1 "\n\e[1;37m\W:\e[0m" "\n\\\$ "'
+PROMPT_COMMAND='__git_ps1 "\n\e[1;33m\w:\e[0m" "\n\\\$ "'
 
 alias ll='ls -ltrao'
 
