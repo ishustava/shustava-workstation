@@ -31,3 +31,4 @@ Refer to [these docs](https://help.github.com/en/articles/generating-a-new-gpg-k
 - terraform
 - kubectl
 - helm
+- tldr
