@@ -5,6 +5,7 @@ cask 'flycut'
 cask 'shiftit'
 cask 'minikube'
 cask '1password'
+cask 'firefox'
 
 brew 'git'
 brew 'jq'
