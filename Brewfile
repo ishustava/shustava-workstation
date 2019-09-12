@@ -6,6 +6,7 @@ cask 'shiftit'
 cask 'minikube'
 cask '1password'
 cask 'firefox'
+cask 'virtutalbox'
 
 brew 'git'
 brew 'jq'
