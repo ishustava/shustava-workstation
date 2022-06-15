@@ -1,20 +1,10 @@
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:/usr/local/bin:$PATH:/usr/local/kubebuilder/bin
 
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUPSTREAM="verbose"
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_DESCRIBE_STYLE='contains'
-GIT_PS1_SHOWCOLORHINTS=1
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-
-source ~/.git-prompt.sh
-source /usr/local/etc/bash_completion.d/git-completion.bash
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-
-PROMPT_COMMAND='__git_ps1 "\n\e[1;33m\w:\e[0m" "\n\\\$ "'
+source /opt/homebrew/share/zsh/site-functions
 
 alias ll='ls -ltrao'
 alias k='kubectl'
@@ -96,16 +86,7 @@ function pw() {
 export GPG_TTY=$(tty)
 
 # fasd
-fasd_cache="$HOME/.fasd-init-bash"
-
-if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-  fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
-fi
-
-
-source "$fasd_cache"
-
-source "$HOME/.cargo/env"
+eval "$(fasd --init auto)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/irynashustava/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/irynashustava/Downloads/google-cloud-sdk/path.bash.inc'; fi
@@ -117,3 +98,11 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 alias python=/usr/local/opt/python@3.8/bin/python3
 export PATH="/usr/local/sbin:$PATH"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
