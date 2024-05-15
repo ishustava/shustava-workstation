@@ -52,27 +52,11 @@ function helmdel() {
   kg secret -n $namespace | grep $1- | cut -d' ' -f1 | xargs -I{} kubectl delete secret {} -n $namespace
 }
 
-function consul_k8s_dev_docker() {
-  pushd $HOME/workspace/consul-k8s
-    make control-plane-dev-docker
-    tag="$(date "+%m-%d-%Y")-$(git rev-parse --short HEAD)"
-    docker tag consul-k8s-control-plane-dev:latest ishustava/consul-k8s-dev:"${tag}"
-    echo "Pushing image ishustava/consul-k8s-dev:${tag}"
-    docker push ishustava/consul-k8s-dev:"${tag}"
-  popd
-}
-
 function delcluster() {
   local cluster
   cluster=$1
   kubectl config delete-cluster ${cluster}
   kubectl config delete-context ${cluster}
-}
-
-function gbt() {
-  local release
-  release=$1
-  kg secret $1-consul-bootstrap-acl-token -o jsonpath='{.data.token}' | base64 -D
 }
 
 function un() {
@@ -85,9 +69,6 @@ function pw() {
 
 export GPG_TTY=$(tty)
 
-# fasd
-eval "$(fasd --init auto)"
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/irynashustava/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/irynashustava/Downloads/google-cloud-sdk/path.bash.inc'; fi
 
@@ -99,10 +80,12 @@ alias python=/usr/local/opt/python@3.8/bin/python3
 export PATH="/usr/local/sbin:$PATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(fasd --init posix-alias zsh-hook)"
 
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-    autoload -Uz compinit
-    compinit
+  autoload -Uz compinit
+  compinit
 fi
+
